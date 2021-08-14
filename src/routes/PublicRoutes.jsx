@@ -1,8 +1,8 @@
 import { React } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from './views/Login';
+import Login from '../views/Login';
 
-function Routes() {
+function PublicRoutes() {
     return (
         <BrowserRouter>
             <Switch>
@@ -11,4 +11,4 @@ function Routes() {
         </BrowserRouter>
     );
 }
-export default Routes;
+export default PublicRoutes;

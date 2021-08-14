@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../contexts/auth';
+
 import {
     Container,
     Title,
@@ -20,6 +22,8 @@ function Login() {
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [password, setPassword] = useState('');
+    const context = useAuth();
+
     async function validate() {
         if (email === '' || password === '') {
             setErrorMessage('Preencha os campos obrigatórios!');
@@ -29,7 +33,13 @@ function Login() {
     }
     async function login() {
         if (validate()) {
-            setError(!error);
+            try {
+                context.Login(email, password);
+                setError(false);
+            } catch (err) {
+                console.log(err);
+                setError(true);
+            }
         }
     }
     return (
