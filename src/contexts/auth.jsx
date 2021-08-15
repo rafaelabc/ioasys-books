@@ -8,25 +8,32 @@ export function AuthProvider({ children }) {
     const [authenticated, setAuthenticated] = useState(false);
 
     async function Login(email, password) {
-        const response = await api
+        await api
             .post('/auth/sign-in', {
                 email,
                 password,
             })
+            .then((response) => {
+                setUser(response.data);
+                const token = response.headers.authorization;
+                const refreshToken = response.headers['refresh-token'];
+
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(response.data.name),
+                );
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem(
+                    'refresh-token',
+                    JSON.stringify(refreshToken),
+                );
+
+                api.defaults.headers.Authorization = `Bearer ${token}`;
+                setAuthenticated(true);
+            })
             .catch((error) => {
-                throw error;
+                throw error.response;
             });
-
-        setUser(response.data);
-        const token = response.headers.authorization;
-        const refreshToken = response.headers['refresh-token'];
-
-        localStorage.setItem('user', JSON.stringify(response.data.name));
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('refresh-token', JSON.stringify(refreshToken));
-
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        setAuthenticated(true);
     }
 
     function Logout() {

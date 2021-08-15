@@ -24,22 +24,24 @@ function Login() {
     const [password, setPassword] = useState('');
     const context = useAuth();
 
-    async function validate() {
-        if (email === '' || password === '') {
-            setErrorMessage('Preencha os campos obrigatórios!');
+    function validate() {
+        if (email === '' && password === '') {
+            setErrorMessage('Email e Senha são obrigatórios.');
             return false;
         }
         return true;
     }
     async function login() {
-        if (validate()) {
-            try {
-                context.Login(email, password);
+        try {
+            if (validate()) {
+                await context.Login(email, password);
                 setError(false);
-            } catch (err) {
-                console.log(err);
+            } else {
                 setError(true);
             }
+        } catch (e) {
+            setErrorMessage(e.data.errors.message);
+            setError(true);
         }
     }
     return (
