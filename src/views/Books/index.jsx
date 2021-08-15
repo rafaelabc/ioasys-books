@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAuth } from '../../contexts/auth';
 import Card from '../../components/Card';
 import {
@@ -52,7 +52,9 @@ function Books() {
                     <Title>Books</Title>
                 </HeaderBrand>
                 <HeaderBrand>
-                    <InfoUser>Bem vindo, {context.user.name}!</InfoUser>
+                    <InfoUser>
+                        Bem vindo, {localStorage.getItem('user')}!
+                    </InfoUser>
                     <Button alt="Fazer logout" type="button" onClick={logout}>
                         <FiLogOut />
                     </Button>
@@ -63,7 +65,14 @@ function Books() {
                     <Card book={book} key={book.id} />
                 ))}
             </Content>
-            <Footer>Footer</Footer>
+            <Footer>
+                <Button alt="Next Page" type="button">
+                    <FiChevronLeft />
+                </Button>
+                <Button alt="Next Page" type="button">
+                    <FiChevronRight />
+                </Button>
+            </Footer>
         </Container>
     );
 }

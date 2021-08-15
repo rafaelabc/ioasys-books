@@ -19,15 +19,9 @@ export function AuthProvider({ children }) {
                 const token = response.headers.authorization;
                 const refreshToken = response.headers['refresh-token'];
 
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify(response.data.name),
-                );
+                localStorage.setItem('user', response.data.name);
                 localStorage.setItem('token', token);
-                localStorage.setItem(
-                    'refresh-token',
-                    JSON.stringify(refreshToken),
-                );
+                localStorage.setItem('refresh-token', refreshToken);
 
                 api.defaults.headers.Authorization = `Bearer ${token}`;
                 setAuthenticated(true);

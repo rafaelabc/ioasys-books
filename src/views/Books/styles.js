@@ -8,12 +8,15 @@ export const Container = styled.main`
         var(--secondary-color)
     );
     height: 86vh;
-    padding: 50px 50px 50px 50px;
+    padding: 30px 30px 30px 30px;
     @media (min-width: 450px) {
         padding: 50px 100px 50px 100px;
     }
     @media (min-width: 570px) {
-        padding: 50px 150px 50px 150px;
+        padding: 30px 30px 30px 30px;
+    }
+    @media (min-width: 1500px) {
+        padding: 50px 100px 200px 100px;
     }
 `;
 export const Header = styled.header`
@@ -58,7 +61,22 @@ export const Button = styled.button`
 `;
 
 export const Content = styled.section`
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 30px;
+    row-gap: 1em;
+    place-items: center;
+
+    @media (min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+    }
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1380px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 `;
 export const Footer = styled.footer`
     display: flex;
