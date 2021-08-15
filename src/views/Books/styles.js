@@ -7,8 +7,9 @@ export const Container = styled.main`
         var(--white-color),
         var(--secondary-color)
     );
-    height: 86vh;
+    height: 100%;
     padding: 30px 30px 30px 30px;
+
     @media (min-width: 450px) {
         padding: 50px 100px 50px 100px;
     }
@@ -41,7 +42,7 @@ export const Logo = styled.img`
         margin-right: 1vw;
     }
 `;
-export const InfoUser = styled.span`
+export const Info = styled.span`
     display: none;
     margin-right: 10px;
     @media (min-width: 768px) {
@@ -58,6 +59,7 @@ export const Button = styled.button`
     width: 36px;
     height: 36px;
     cursor: pointer;
+    margin-right: 20px;
 `;
 
 export const Content = styled.section`
@@ -80,4 +82,8 @@ export const Content = styled.section`
 `;
 export const Footer = styled.footer`
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 40px;
+    margin-top: 20px;
 `;

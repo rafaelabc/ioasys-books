@@ -5,7 +5,7 @@ export const Container = styled.div`
     align-items: center;
     background-color: var(--white-color);
     box-shadow: 0px 6px 24px var(--shadow-color);
-    width: 260px;
+    width: 280px;
     padding: 15px;
     border-radius: 4px;
     &:hover {

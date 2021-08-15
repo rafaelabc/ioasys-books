@@ -10,7 +10,6 @@ import {
 } from './styles';
 
 function Card({ book }) {
-    console.log(book);
     return (
         <Container>
             <Cover src={book.imageUrl} alt="Capa do livro" />
@@ -18,7 +17,7 @@ function Card({ book }) {
                 <Header>
                     <Title>{book.title}</Title>
                     {book.authors.map((author) => (
-                        <Subtitle>{author}</Subtitle>
+                        <Subtitle key={author}>{author}</Subtitle>
                     ))}
                 </Header>
                 <Footer>

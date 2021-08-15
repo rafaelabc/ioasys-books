@@ -8,7 +8,7 @@ import {
     Logo,
     Title,
     HeaderBrand,
-    InfoUser,
+    Info,
     Button,
     Content,
     Footer,
@@ -18,6 +18,7 @@ import api from '../../services/api';
 
 function Books() {
     const context = useAuth();
+    const [totalPages, setTotalPages] = useState(0);
     const [books, setBooks] = useState([]);
     const [page, setPage] = useState(1);
     async function logout() {
@@ -35,15 +36,26 @@ function Books() {
                 amount: 12,
             },
         });
+        // Arredondando o total de paginas
+        setTotalPages(Math.ceil(response.data.totalPages));
         setBooks(response.data.data);
+        console.log(response);
     }
-
+    function next() {
+        if (page + 1 <= totalPages) {
+            setPage(page + 1);
+        }
+    }
+    function prev() {
+        if (page - 1 > 0) {
+            setPage(page - 1);
+        }
+    }
     useEffect(() => {
         (async () => {
-            setPage(1);
             loadBooks();
         })();
-    }, []);
+    }, [page]);
     return (
         <Container>
             <Header>
@@ -52,9 +64,7 @@ function Books() {
                     <Title>Books</Title>
                 </HeaderBrand>
                 <HeaderBrand>
-                    <InfoUser>
-                        Bem vindo, {localStorage.getItem('user')}!
-                    </InfoUser>
+                    <Info>Bem vindo, {localStorage.getItem('user')}!</Info>
                     <Button alt="Fazer logout" type="button" onClick={logout}>
                         <FiLogOut />
                     </Button>
@@ -66,10 +76,23 @@ function Books() {
                 ))}
             </Content>
             <Footer>
-                <Button alt="Next Page" type="button">
+                <Info>
+                    Página {page} de {totalPages}
+                </Info>
+                <Button
+                    disabled={!books || page <= 1}
+                    alt="Next Page"
+                    type="button"
+                    onClick={prev}
+                >
                     <FiChevronLeft />
                 </Button>
-                <Button alt="Next Page" type="button">
+                <Button
+                    disabled={!books || page >= totalPages}
+                    alt="Next Page"
+                    type="button"
+                    onClick={next}
+                >
                     <FiChevronRight />
                 </Button>
             </Footer>
