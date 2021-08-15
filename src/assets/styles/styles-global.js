@@ -4,6 +4,7 @@ import Heebo from '../fonts/Heebo/Heebo-VariableFont_wght.ttf';
 export default createGlobalStyle`
 :root {
     --primary-color: #B22E6F;
+    --secondary-color: rgb(247, 221, 231);
     --white-color: #ffffff;
     --input-background-color: rgba(0, 0, 0, 0.32);
     --error-background-color:  rgba(255, 255, 255, 0.4);

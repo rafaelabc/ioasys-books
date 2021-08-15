@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
             })
             .then((response) => {
                 setUser(response.data);
+
                 const token = response.headers.authorization;
                 const refreshToken = response.headers['refresh-token'];
 
@@ -22,7 +23,7 @@ export function AuthProvider({ children }) {
                     'user',
                     JSON.stringify(response.data.name),
                 );
-                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('token', token);
                 localStorage.setItem(
                     'refresh-token',
                     JSON.stringify(refreshToken),
@@ -41,6 +42,7 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('refresh-token');
+
         api.defaults.headers.Authorization = undefined;
         setAuthenticated(false);
     }
@@ -55,7 +57,14 @@ export function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ authenticated, user, Login, Logout }}>
+        <AuthContext.Provider
+            value={{
+                authenticated,
+                user,
+                Login,
+                Logout,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );

@@ -74,7 +74,7 @@ function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </InputGroupSubmit>
-                        <Button type="button" onClick={login}>
+                        <Button alt="Fazer login" type="button" onClick={login}>
                             Entrar
                         </Button>
                     </InputGroup>
