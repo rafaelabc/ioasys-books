@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FiLogOut, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import ReactLoading from 'react-loading';
 import { useAuth } from '../../contexts/auth';
 import Card from '../../components/Card';
+
 import {
     Container,
     Header,
@@ -21,28 +23,33 @@ function Books() {
     const [totalPages, setTotalPages] = useState(0);
     const [books, setBooks] = useState([]);
     const [page, setPage] = useState(1);
-
+    const [loading, setLoading] = useState(false);
     async function logout() {
         context.Logout();
     }
     async function loadBooks() {
         const storagedToken = localStorage.getItem('token');
-
-        await api
-            .get('books', {
-                headers: {
-                    Authorization: `Bearer ${storagedToken}`,
-                },
-                params: {
-                    page,
-                    amount: 12,
-                },
-            })
-            .then((response) => {
-                // Arredondando o total de paginas
-                setTotalPages(Math.ceil(response.data.totalPages));
-                setBooks(response.data.data);
-            });
+        setLoading(true);
+        try {
+            await api
+                .get('books', {
+                    headers: {
+                        Authorization: `Bearer ${storagedToken}`,
+                    },
+                    params: {
+                        page,
+                        amount: 12,
+                    },
+                })
+                .then((response) => {
+                    // Arredondando o total de paginas
+                    setTotalPages(Math.ceil(response.data.totalPages));
+                    setBooks(response.data.data);
+                    setLoading(false);
+                });
+        } catch (error) {
+            logout();
+        }
     }
     function next() {
         if (page + 1 <= totalPages) {
@@ -73,32 +80,38 @@ function Books() {
                     </Button>
                 </HeaderBrand>
             </Header>
-            <Content>
-                {books.map((book) => (
-                    <Card book={book} key={book.id} />
-                ))}
-            </Content>
-            <Footer>
-                <Info>
-                    Página {page} de {totalPages}
-                </Info>
-                <Button
-                    disabled={!books || page <= 1}
-                    alt="Next Page"
-                    type="button"
-                    onClick={prev}
-                >
-                    <FiChevronLeft />
-                </Button>
-                <Button
-                    disabled={!books || page >= totalPages}
-                    alt="Next Page"
-                    type="button"
-                    onClick={next}
-                >
-                    <FiChevronRight />
-                </Button>
-            </Footer>
+            {loading ? (
+                <ReactLoading type="spin" color="#ab3fb5" />
+            ) : (
+                <div>
+                    <Content>
+                        {books.map((book) => (
+                            <Card book={book} key={book.id} />
+                        ))}
+                    </Content>
+                    <Footer>
+                        <Info>
+                            Página {page} de {totalPages}
+                        </Info>
+                        <Button
+                            disabled={!books || page <= 1}
+                            alt="Next Page"
+                            type="button"
+                            onClick={prev}
+                        >
+                            <FiChevronLeft />
+                        </Button>
+                        <Button
+                            disabled={!books || page >= totalPages}
+                            alt="Next Page"
+                            type="button"
+                            onClick={next}
+                        >
+                            <FiChevronRight />
+                        </Button>
+                    </Footer>
+                </div>
+            )}
         </Container>
     );
 }

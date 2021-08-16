@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import ReactLoading from 'react-loading';
 import { useAuth } from '../../contexts/auth';
-
 import {
     Container,
     Title,
@@ -22,6 +22,8 @@ function Login() {
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const context = useAuth();
 
     function validate() {
@@ -32,6 +34,8 @@ function Login() {
         return true;
     }
     async function login() {
+        setLoading(true);
+
         try {
             if (validate()) {
                 await context.Login(email, password);
@@ -39,9 +43,11 @@ function Login() {
             } else {
                 setError(true);
             }
+            setLoading(false);
         } catch (e) {
             setErrorMessage(e.data.errors.message);
             setError(true);
+            setLoading(false);
         }
     }
     return (
@@ -74,9 +80,23 @@ function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </InputGroupSubmit>
-                        <Button alt="Fazer login" type="button" onClick={login}>
-                            Entrar
-                        </Button>
+
+                        {loading ? (
+                            <ReactLoading
+                                height={85}
+                                width={36}
+                                type="spin"
+                                color="#f5f5f5"
+                            />
+                        ) : (
+                            <Button
+                                alt="Fazer login"
+                                type="button"
+                                onClick={login}
+                            >
+                                Entrar
+                            </Button>
+                        )}
                     </InputGroup>
                 </Form>
                 {error ? <ToastError>{errorMessage}</ToastError> : ''}
