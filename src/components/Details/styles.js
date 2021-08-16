@@ -84,6 +84,7 @@ export const Cover = styled.img`
 `;
 export const Subtitle = styled.span`
     color: var(--primary-color);
+    display: block;
 `;
 export const SectionInfo = styled.div`
     margin-top: 20px;
