@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+<h1 align="center">
+    
+  Ioasys Books
+   
+</h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</h1>
 
-## Available Scripts
+## Sobre o projeto
+**Processo seletivo  [Ioasys][ioasys]** 
+Ioasys Book - Visualização em lista e detalhada de seus livros! 
 
-In the project directory, you can run:
+- Login
+- Logout
+- Lista de livros com paginação
+- Ver os detalhes de um livro
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Layout
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="support-chat" title="#support-chat" src="./repo-assets/login.png" width="250px"> <br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  <img alt="support-chat" title="#support-chat" src="./repo-assets/books.png" width="250x">
+  <img alt="support-chat" title="#support-chat" src="./repo-assets/details.png" width="250px">
+</p>
 
-### `yarn test`
+## Tecnologias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ReactJS][react]
+- [React Router Dom][reactrouter]
+- [React Loading][reactloading]
+- [React Icons][reacticons]
+- [Axios][axios]
+- [Styled Components][styledcomp]
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Como executar o projeto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pré-requisitos
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js][nodejs], [Yarn][yarn]
+Além disto é bom ter um editor para trabalhar com o código como [VSCode][vscode] 
+### Usuário para Teste
+- Email: desafio@ioasys.com.br
+- Senha: 12341234
+### Executando
 
-### `yarn eject`
+```bash
+# Clone este repositório
+$ git clone https://github.com/rafaelabc/ioasys-books
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Acesse a pasta do projeto no terminal/cmd
+$ cd ioasys-books
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Instale as dependências
+$ yarn install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Inicie a aplicação
+$ yarn start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+```
+Rota para acessar website
+* /localhost:3000
 
-## Learn More
+Feito por Rafaela Custódio [Entre em contato!](https://www.linkedin.com/in/rafaela-custodio/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[yarn]: https://yarnpkg.com/
+[vscode]: https://code.visualstudio.com/
+[license]: https://opensource.org/licenses/MIT
+[reacticons]: https://react-icons.github.io/react-icons/
+[ioasys]: https://ioasys.com.br/
+[reactloading]: https://github.com/fakiolinho/react-loading
+[reactrouter]: https://reactrouter.com/web/guides/quick-start
+[react]: https://pt-br.reactjs.org/
+[styledcomp]: https://styled-components.com/
+[axios]: https://github.com/axios/axios
+[nodejs]: https://nodejs.org/en/
