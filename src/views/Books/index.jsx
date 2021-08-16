@@ -21,25 +21,28 @@ function Books() {
     const [totalPages, setTotalPages] = useState(0);
     const [books, setBooks] = useState([]);
     const [page, setPage] = useState(1);
+
     async function logout() {
         context.Logout();
     }
     async function loadBooks() {
         const storagedToken = localStorage.getItem('token');
 
-        const response = await api.get('books', {
-            headers: {
-                Authorization: `Bearer ${storagedToken}`,
-            },
-            params: {
-                page,
-                amount: 12,
-            },
-        });
-        // Arredondando o total de paginas
-        setTotalPages(Math.ceil(response.data.totalPages));
-        setBooks(response.data.data);
-        console.log(response);
+        await api
+            .get('books', {
+                headers: {
+                    Authorization: `Bearer ${storagedToken}`,
+                },
+                params: {
+                    page,
+                    amount: 12,
+                },
+            })
+            .then((response) => {
+                // Arredondando o total de paginas
+                setTotalPages(Math.ceil(response.data.totalPages));
+                setBooks(response.data.data);
+            });
     }
     function next() {
         if (page + 1 <= totalPages) {

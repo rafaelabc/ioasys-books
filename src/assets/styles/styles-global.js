@@ -10,6 +10,8 @@ export default createGlobalStyle`
     --shadow-color: rgba(84, 16, 95, 0.20);
     --shadow-hover-color: rgba(84, 16, 95, 0.40);
     --error-background-color:  rgba(255, 255, 255, 0.4);
+    --dark-grey-color:  #333333;
+
 }
 @font-face {
     font-family: 'Heebo';
